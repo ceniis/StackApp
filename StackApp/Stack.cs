@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace StackApp
 {
     public class StackNode
     {
-        public int Data; // Значення вузла
-        public StackNode Next; // Вказівник на наступний вузол
+        public int Data { get; set; } // Значення вузла
+        public StackNode? Next; // Вказівник на наступний вузол
 
 
         public StackNode(int data)
@@ -24,10 +20,14 @@ namespace StackApp
     /// </summary>
     public class Stack
     {
-        private StackNode top; // Вказівник на вершину стека
+        private StackNode? top;
+        private BindingList<StackNode> nodes; // Колекція вузлів
+        public BindingList<StackNode> Nodes => nodes;
+
         public Stack()
         {
-            this.top = null; // Стек порожній при ініціалізації
+            top = null;
+            nodes = new BindingList<StackNode>();
         }
 
         /// <summary>
@@ -36,20 +36,19 @@ namespace StackApp
         public void Push(int data)
         {
             StackNode newNode = new StackNode(data);
-            newNode.Next = top; // Новий вузол вказує на старий верхній елемент
-            top = newNode; // Встановлюємо новий вузол як вершину стека
+            newNode.Next = top;
+            top = newNode;
+            nodes.Insert(0, newNode); // Додаємо на початок списку
         }
 
         /// <summary>
         /// Повертає елемент з вершини стека без видалення.
         /// </summary>
-        public int Peek()
+        public StackNode Peek()
         {
-            if (IsEmpty())
-            {
+            if (IsEmpty)
                 throw new InvalidOperationException("Stack is empty.");
-            }
-            return top.Data;
+            return top!;
         }
 
         /// <summary>
@@ -65,23 +64,20 @@ namespace StackApp
         /// </summary>
         public int Pop(bool returnValue = true)
         {
-            if (IsEmpty())
-            {
+            if (IsEmpty)
                 throw new InvalidOperationException("Stack is empty.");
-            }
-            int poppedData = top.Data;
+
+            int poppedData = top!.Data;
+            nodes.RemoveAt(0); // Видаляємо з колекції
             top = top.Next;
-            // Якщо returnValue дорівнює true, повертаємо значення.
             return returnValue ? poppedData : 0;
         }
 
         /// <summary>
         /// Перевіряє, чи порожній стек.
         /// </summary>
-        public bool IsEmpty()
-        {
-            return top == null;
-        }
+        public bool IsEmpty => top == null;
+
 
         /// <summary>
         /// Видаляє всі елементи зі стека.
@@ -89,25 +85,23 @@ namespace StackApp
         public void FreeStack()
         {
             top = null;
+            nodes.Clear();
         }
 
         /// <summary>
         /// Повертає кількість елементів у стеці.
         /// </summary>
-        public int Count()
-        {
-            int count = 0;
-            StackNode current = top;
-            while (current != null)
-            {
-                count++;
-                current = current.Next;
-            }
-            return count;
-        }
+        public int Count => nodes.Count;
 
         /// <summary>
-        /// Виводить усі елементи стека.
+        /// Повертає колекцію всіх вузлів (копія списку).
         /// </summary>
+        public List<StackNode> GetAllNodes()
+        {
+            return new List<StackNode>(nodes);
+        }
+
+        public StackNode? Top => top;
     }
 }
+
