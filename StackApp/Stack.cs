@@ -104,4 +104,3 @@ namespace StackApp
         public StackNode? Top => top;
     }
 }
-

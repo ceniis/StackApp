@@ -2,11 +2,11 @@ using StackApp;
 using System.Windows.Forms;
 namespace StackApp
 {
-    public partial class FormStack : Form
+    public partial class FormStackNode : Form
     {
         private Stack myStack = new Stack();
 
-        public FormStack()
+        public FormStackNode()
         {
             InitializeComponent();
         }
@@ -47,17 +47,17 @@ namespace StackApp
             labelElements.Text = $"There're {myStack.Count} element(s).";
         }
 
-        private void HighlightTopRow()
+        public void HighlightTopRow(DataGridView dataGridView)
         {
-            if (dataGridView1.Rows.Count > 0)
+            if (dataGridView.Rows.Count > 0)
             {
-                dataGridView1.ClearSelection();
-                var row = dataGridView1.Rows[0];
+                dataGridView.ClearSelection();
+                var row = dataGridView.Rows[0];
                 row.Selected = true;
             }
         }
 
-        private void btnHelp_Click(object sender, EventArgs e)
+        public void btnHelp_Click(object sender, EventArgs e)
         {
             FormHelp formHelp = new FormHelp();
             formHelp.ShowDialog();
@@ -88,7 +88,7 @@ namespace StackApp
         {
             try
             {
-                HighlightTopRow();
+                HighlightTopRow(dataGridView1);
             }
             catch (Exception ex)
             {
@@ -124,7 +124,7 @@ namespace StackApp
             }
         }
 
-        private void btnFile_Click(object sender, EventArgs e)
+        public void btnFile_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -141,6 +141,12 @@ namespace StackApp
                     dataGridView1.Refresh();
                 }
             }
+        }
+
+        private void btnArrayStack_Click(object sender, EventArgs e)
+        {
+            FormStackArray array = new FormStackArray();
+            array.Show();
         }
     }
 }

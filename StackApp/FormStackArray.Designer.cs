@@ -1,14 +1,14 @@
 ﻿namespace StackApp
 {
-    partial class FormStack
+    partial class FormStackArray
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormStack));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormStackArray));
             dataGridView1 = new DataGridView();
             labelElements = new Label();
             groupBox1 = new GroupBox();
@@ -37,10 +37,12 @@
             btnPush = new Button();
             btnPop = new Button();
             btnHelp = new Button();
-            btnFile = new Button();
+            btnRead = new Button();
             numericUpDown1 = new NumericUpDown();
             label1 = new Label();
             checkBox1 = new CheckBox();
+            btnArrayStack = new Button();
+            btnSave = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -53,7 +55,7 @@
             dataGridView1.Margin = new Padding(4, 3, 4, 3);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(201, 229);
+            dataGridView1.Size = new Size(201, 288);
             dataGridView1.TabIndex = 0;
             // 
             // labelElements
@@ -160,7 +162,7 @@
             btnHelp.FlatAppearance.MouseOverBackColor = Color.DarkGray;
             btnHelp.FlatStyle = FlatStyle.Flat;
             btnHelp.ForeColor = SystemColors.ControlLight;
-            btnHelp.Location = new Point(234, 233);
+            btnHelp.Location = new Point(379, 292);
             btnHelp.Margin = new Padding(4, 3, 4, 3);
             btnHelp.Name = "btnHelp";
             btnHelp.Size = new Size(138, 39);
@@ -169,23 +171,23 @@
             btnHelp.UseVisualStyleBackColor = false;
             btnHelp.Click += btnHelp_Click;
             // 
-            // btnFile
+            // btnRead
             // 
-            btnFile.BackColor = Color.FromArgb(85, 85, 85);
-            btnFile.Cursor = Cursors.Hand;
-            btnFile.FlatAppearance.BorderColor = Color.LightGray;
-            btnFile.FlatAppearance.BorderSize = 2;
-            btnFile.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            btnFile.FlatStyle = FlatStyle.Flat;
-            btnFile.ForeColor = SystemColors.ControlLight;
-            btnFile.Location = new Point(379, 233);
-            btnFile.Margin = new Padding(4, 3, 4, 3);
-            btnFile.Name = "btnFile";
-            btnFile.Size = new Size(138, 39);
-            btnFile.TabIndex = 5;
-            btnFile.Text = "Read from file";
-            btnFile.UseVisualStyleBackColor = false;
-            btnFile.Click += btnFile_Click;
+            btnRead.BackColor = Color.FromArgb(85, 85, 85);
+            btnRead.Cursor = Cursors.Hand;
+            btnRead.FlatAppearance.BorderColor = Color.LightGray;
+            btnRead.FlatAppearance.BorderSize = 2;
+            btnRead.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            btnRead.FlatStyle = FlatStyle.Flat;
+            btnRead.ForeColor = SystemColors.ControlLight;
+            btnRead.Location = new Point(234, 233);
+            btnRead.Margin = new Padding(4, 3, 4, 3);
+            btnRead.Name = "btnRead";
+            btnRead.Size = new Size(138, 39);
+            btnRead.TabIndex = 5;
+            btnRead.Text = "Read from file";
+            btnRead.UseVisualStyleBackColor = false;
+            btnRead.Click += btnSave_Click;
             // 
             // numericUpDown1
             // 
@@ -222,17 +224,53 @@
             checkBox1.Text = "Generate an element randomly ";
             checkBox1.UseVisualStyleBackColor = true;
             // 
-            // FormStack
+            // btnArrayStack
+            // 
+            btnArrayStack.BackColor = SystemColors.ControlLight;
+            btnArrayStack.Cursor = Cursors.Hand;
+            btnArrayStack.FlatAppearance.BorderColor = Color.FromArgb(65, 65, 65);
+            btnArrayStack.FlatAppearance.BorderSize = 2;
+            btnArrayStack.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            btnArrayStack.FlatStyle = FlatStyle.Flat;
+            btnArrayStack.ForeColor = Color.FromArgb(65, 65, 65);
+            btnArrayStack.Location = new Point(234, 292);
+            btnArrayStack.Margin = new Padding(4, 3, 4, 3);
+            btnArrayStack.Name = "btnArrayStack";
+            btnArrayStack.Size = new Size(138, 39);
+            btnArrayStack.TabIndex = 10;
+            btnArrayStack.Text = "Node stack";
+            btnArrayStack.UseVisualStyleBackColor = false;
+            // 
+            // btnSave
+            // 
+            btnSave.BackColor = Color.FromArgb(85, 85, 85);
+            btnSave.Cursor = Cursors.Hand;
+            btnSave.FlatAppearance.BorderColor = Color.LightGray;
+            btnSave.FlatAppearance.BorderSize = 2;
+            btnSave.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.ForeColor = SystemColors.ControlLight;
+            btnSave.Location = new Point(381, 233);
+            btnSave.Margin = new Padding(4, 3, 4, 3);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(138, 39);
+            btnSave.TabIndex = 9;
+            btnSave.Text = "Save in file";
+            btnSave.UseVisualStyleBackColor = false;
+            // 
+            // FormStackArray
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(42, 42, 42);
-            ClientSize = new Size(532, 291);
+            ClientSize = new Size(532, 343);
+            Controls.Add(btnArrayStack);
+            Controls.Add(btnSave);
             Controls.Add(checkBox1);
             Controls.Add(label1);
             Controls.Add(numericUpDown1);
-            Controls.Add(btnFile);
             Controls.Add(btnHelp);
+            Controls.Add(btnRead);
             Controls.Add(groupBox1);
             Controls.Add(labelElements);
             Controls.Add(dataGridView1);
@@ -242,10 +280,10 @@
             Margin = new Padding(4, 3, 4, 3);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "FormStack";
+            Name = "FormStackArray";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Stack";
-            Load += FormStack_Load;
+            Text = "Stack Node";
+            Load += FormStackArray_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
@@ -262,9 +300,11 @@
         private Button btnPush;
         private Button btnPop;
         private Button btnHelp;
-        private Button btnFile;
+        private Button btnRead;
         private NumericUpDown numericUpDown1;
         private Label label1;
         private CheckBox checkBox1;
+        private Button btnArrayStack;
+        private Button btnSave;
     }
 }
