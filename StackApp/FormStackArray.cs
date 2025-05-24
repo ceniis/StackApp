@@ -54,33 +54,76 @@ namespace StackApp
 
             // Update the label
             labelElements.Text = StackArray.NumberOfElements();
-            StackArray.StackSize = 10; 
+            StackArray.StackSize = (int)numericUpDown2.Value; 
         }
 
         private void btnPush_Click(object sender, EventArgs e)
         {
-
+            int element = checkBox1.Checked ? new Random().Next(0, 10) : (int)numericUpDown1.Value; 
+            StackArray.InsertTopElement(element);
+            labelElements.Text = StackArray.NumberOfElements();
         }
 
         private void btnPop_Click(object sender, EventArgs e)
         {
-
+            StackArray.DeleteTopElement();
+            labelElements.Text = StackArray.NumberOfElements();
         }
 
         private void btnPeek_Click(object sender, EventArgs e)
         {
-
+            node.btnPeek_Click(sender, e, dataGridView1);
         }
 
         private void btnFree_Click(object sender, EventArgs e)
         {
-
+            StackArray.ClearsStack();
+            MessageBox.Show("Stack is empty", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            labelElements.Text = StackArray.NumberOfElements();
         }
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-            node.btnFile_Click(sender, e);
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.Title = "Select a text file with integers";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string[] lines = File.ReadAllLines(openFileDialog.FileName);
+                    List<int> numbers = new List<int>();
+
+                    foreach (string line in lines)
+                    {
+                        if (int.TryParse(line.Trim(), out int number))
+                        {
+                            numbers.Add(number);
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Invalid number skipped: {line}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+
+                    // Display in DataGridView
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.Columns.Add("Elements", "Elements");
+
+                    foreach (int num in numbers)
+                    {
+                        dataGridView1.Rows.Add(num);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error reading file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -94,8 +137,8 @@ namespace StackApp
 
         private void btnNodeStack_Click(object sender, EventArgs e)
         {
-            node.Show();
             this.Hide();
+            node.Show();
         }
     }
 }

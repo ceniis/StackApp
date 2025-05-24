@@ -84,11 +84,11 @@ namespace StackApp
             }
         }
 
-        private void btnPeek_Click(object sender, EventArgs e)
+        public void btnPeek_Click(object sender, EventArgs e, DataGridView dataGridView)
         {
             try
             {
-                HighlightTopRow(dataGridView1);
+                HighlightTopRow(dataGridView);
             }
             catch (Exception ex)
             {

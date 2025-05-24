@@ -27,7 +27,7 @@ namespace StackApp
         /// <summary>
         /// Method that clears a stack
         /// </summary>
-        private static void ClearsStack()
+        public static void ClearsStack()
         {
             Top = -1;
             MyStack = new int[Top + 1];
@@ -46,7 +46,7 @@ namespace StackApp
         /// <summary>
         /// Method that deletes the top elementf of a stack
         /// </summary>
-        private static void DeleteTopElement()
+        public static void DeleteTopElement()
         {
             if (MyStack.Length == 0)
                 throw new InvalidOperationException("Stack is already empty.");
@@ -60,7 +60,7 @@ namespace StackApp
         /// <summary>
         /// Method that inserts a new top element to stack
         /// </summary>
-        private static void InsertTopElement(int element)
+        public static void InsertTopElement(int element)
         {
             if (Top == StackSize - 1)
                 throw new InvalidOperationException("Stack is full.");
@@ -75,7 +75,7 @@ namespace StackApp
         /// <summary>
         /// Method that checks if our stack is empty or not
         /// </summary>
-        private static bool FillmentCheck()
+        public static bool FillmentCheck()
         {
             bool filment;
             if (MyStack.Length == 0) return filment = true; // emptu
@@ -87,17 +87,7 @@ namespace StackApp
         /// </summary>
         public static string NumberOfElements()
         {
-            return MyStack.Length == 0 ? "Stack is empty" : $"{Top + 1} elements in the stack";
+            return MyStack.Length == 0 ? "0 elements in the stack" : $"There're { Top + 1} element(s).";
         }
-
-        private void UpdateListBox(DataGridView dataGridView)
-        {
-           // dataGridView.();
-            for (int i = Top; i >= 0; i--)
-            {
-               //dataGridView.Add(MyStack[i]);
-            }
-        }
-
     }
 }

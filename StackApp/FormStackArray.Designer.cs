@@ -43,15 +43,18 @@
             checkBox1 = new CheckBox();
             btnArrayStack = new Button();
             btnSave = new Button();
+            label2 = new Label();
+            numericUpDown2 = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(13, 43);
+            dataGridView1.Location = new Point(13, 86);
             dataGridView1.Margin = new Padding(4, 3, 4, 3);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
@@ -62,7 +65,7 @@
             // 
             labelElements.AutoSize = true;
             labelElements.ForeColor = SystemColors.ControlLight;
-            labelElements.Location = new Point(13, 16);
+            labelElements.Location = new Point(13, 54);
             labelElements.Margin = new Padding(4, 0, 4, 0);
             labelElements.Name = "labelElements";
             labelElements.Size = new Size(201, 21);
@@ -76,7 +79,7 @@
             groupBox1.Controls.Add(btnPush);
             groupBox1.Controls.Add(btnPop);
             groupBox1.ForeColor = SystemColors.ControlLight;
-            groupBox1.Location = new Point(234, 78);
+            groupBox1.Location = new Point(234, 121);
             groupBox1.Margin = new Padding(4, 3, 4, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4, 3, 4, 3);
@@ -162,7 +165,7 @@
             btnHelp.FlatAppearance.MouseOverBackColor = Color.DarkGray;
             btnHelp.FlatStyle = FlatStyle.Flat;
             btnHelp.ForeColor = SystemColors.ControlLight;
-            btnHelp.Location = new Point(379, 292);
+            btnHelp.Location = new Point(379, 335);
             btnHelp.Margin = new Padding(4, 3, 4, 3);
             btnHelp.Name = "btnHelp";
             btnHelp.Size = new Size(138, 39);
@@ -180,7 +183,7 @@
             btnRead.FlatAppearance.MouseOverBackColor = Color.DarkGray;
             btnRead.FlatStyle = FlatStyle.Flat;
             btnRead.ForeColor = SystemColors.ControlLight;
-            btnRead.Location = new Point(234, 233);
+            btnRead.Location = new Point(234, 276);
             btnRead.Margin = new Padding(4, 3, 4, 3);
             btnRead.Name = "btnRead";
             btnRead.Size = new Size(138, 39);
@@ -194,7 +197,7 @@
             numericUpDown1.BackColor = Color.FromArgb(42, 42, 42);
             numericUpDown1.BorderStyle = BorderStyle.FixedSingle;
             numericUpDown1.ForeColor = SystemColors.ControlLight;
-            numericUpDown1.Location = new Point(398, 9);
+            numericUpDown1.Location = new Point(398, 52);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(119, 28);
             numericUpDown1.TabIndex = 6;
@@ -203,7 +206,7 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = SystemColors.ControlLight;
-            label1.Location = new Point(234, 11);
+            label1.Location = new Point(234, 54);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(157, 21);
@@ -217,7 +220,7 @@
             checkBox1.CheckState = CheckState.Checked;
             checkBox1.FlatStyle = FlatStyle.Flat;
             checkBox1.ForeColor = SystemColors.ControlLight;
-            checkBox1.Location = new Point(234, 43);
+            checkBox1.Location = new Point(234, 86);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(296, 25);
             checkBox1.TabIndex = 8;
@@ -228,12 +231,12 @@
             // 
             btnArrayStack.BackColor = SystemColors.ControlLight;
             btnArrayStack.Cursor = Cursors.Hand;
-            btnArrayStack.FlatAppearance.BorderColor = Color.FromArgb(65, 65, 65);
+            btnArrayStack.FlatAppearance.BorderColor = Color.White;
             btnArrayStack.FlatAppearance.BorderSize = 2;
             btnArrayStack.FlatAppearance.MouseOverBackColor = Color.DarkGray;
             btnArrayStack.FlatStyle = FlatStyle.Flat;
             btnArrayStack.ForeColor = Color.FromArgb(65, 65, 65);
-            btnArrayStack.Location = new Point(234, 292);
+            btnArrayStack.Location = new Point(234, 335);
             btnArrayStack.Margin = new Padding(4, 3, 4, 3);
             btnArrayStack.Name = "btnArrayStack";
             btnArrayStack.Size = new Size(138, 39);
@@ -250,7 +253,7 @@
             btnSave.FlatAppearance.MouseOverBackColor = Color.DarkGray;
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.ForeColor = SystemColors.ControlLight;
-            btnSave.Location = new Point(381, 233);
+            btnSave.Location = new Point(381, 276);
             btnSave.Margin = new Padding(4, 3, 4, 3);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(138, 39);
@@ -258,12 +261,36 @@
             btnSave.Text = "Save in file";
             btnSave.UseVisualStyleBackColor = false;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = SystemColors.ControlLight;
+            label2.Location = new Point(13, 9);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(228, 21);
+            label2.TabIndex = 11;
+            label2.Text = "Enter the size of the stack:";
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.BackColor = Color.FromArgb(42, 42, 42);
+            numericUpDown2.BorderStyle = BorderStyle.FixedSingle;
+            numericUpDown2.ForeColor = SystemColors.ControlLight;
+            numericUpDown2.Location = new Point(248, 7);
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(70, 28);
+            numericUpDown2.TabIndex = 12;
+            numericUpDown2.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            // 
             // FormStackArray
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(42, 42, 42);
-            ClientSize = new Size(532, 343);
+            ClientSize = new Size(532, 386);
+            Controls.Add(numericUpDown2);
+            Controls.Add(label2);
             Controls.Add(btnArrayStack);
             Controls.Add(btnSave);
             Controls.Add(checkBox1);
@@ -287,6 +314,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -306,5 +334,7 @@
         private CheckBox checkBox1;
         private Button btnArrayStack;
         private Button btnSave;
+        private Label label2;
+        private NumericUpDown numericUpDown2;
     }
 }

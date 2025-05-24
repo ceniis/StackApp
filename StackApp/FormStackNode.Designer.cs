@@ -117,7 +117,7 @@
             btnPeek.TabIndex = 2;
             btnPeek.Text = "Peek";
             btnPeek.UseVisualStyleBackColor = false;
-            btnPeek.Click += btnPeek_Click;
+
             // 
             // btnPush
             // 
@@ -245,7 +245,7 @@
             // 
             btnArrayStack.BackColor = SystemColors.ControlLight;
             btnArrayStack.Cursor = Cursors.Hand;
-            btnArrayStack.FlatAppearance.BorderColor = Color.FromArgb(65, 65, 65);
+            btnArrayStack.FlatAppearance.BorderColor = Color.White;
             btnArrayStack.FlatAppearance.BorderSize = 2;
             btnArrayStack.FlatAppearance.MouseOverBackColor = Color.DarkGray;
             btnArrayStack.FlatStyle = FlatStyle.Flat;
