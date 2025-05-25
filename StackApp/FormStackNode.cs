@@ -103,27 +103,6 @@ namespace StackApp
             labelElements.Text = $"There're {myStack.Count} element(s).";
         }
 
-        public void LoadFromFile(string fileName)
-        {
-            if (!File.Exists(fileName))
-            {
-                MessageBox.Show("File not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            string[] lines = File.ReadAllLines(fileName);
-            foreach (string line in lines)
-            {
-                if (int.TryParse(line.Trim(), out int number))
-                {
-                    myStack.Push(number); // Add to stack
-                }
-                else
-                {
-                    MessageBox.Show($"Invalid line in file: \"{line}\"", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-        }
-
         private void btnRead_Click(object sender, EventArgs e)
         {
             try
@@ -133,11 +112,19 @@ namespace StackApp
                     openFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
                     openFileDialog.Title = "Select a file to load";
 
-
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
+                        string[] lines = File.ReadAllLines(openFileDialog.FileName);
                         myStack.FreeStack();
-                        LoadFromFile(openFileDialog.FileName);
+
+                        foreach (var line in lines)
+                        {
+                            if (int.TryParse(line.Trim(), out int number))
+                                myStack.Push(number);
+                            else
+                                MessageBox.Show($"Invalid line: {line}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
                         dataGridView1.DataSource = null;
                         dataGridView1.DataSource = myStack.Nodes;
                         labelElements.Text = $"There're {myStack.Count} element(s).";
@@ -151,6 +138,7 @@ namespace StackApp
             }
         }
 
+
         private void btnArrayStack_Click(object sender, EventArgs e)
         {
             FormStackArray array = new FormStackArray();
@@ -162,30 +150,6 @@ namespace StackApp
             HighlightTopRow(dataGridView1);
         }
 
-        public void SaveToFile(string fileName, DataGridView dataGridView)
-        {
-            try
-            {
-                using (StreamWriter writer = new StreamWriter(fileName))
-                {
-                    foreach (DataGridViewRow row in dataGridView.Rows)
-                    {
-                        if (row.IsNewRow) continue; // Skip the blank row at the end
-                        if (row.Cells["colElement"].Value is int value)
-                        {
-                            writer.WriteLine(value);
-                        }
-                    }
-                }
-
-                MessageBox.Show("Stack saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error saving to file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
@@ -195,7 +159,7 @@ namespace StackApp
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    SaveToFile(saveFileDialog.FileName, dataGridView1);
+                    FileManager.SaveToFile(saveFileDialog.FileName, dataGridView1);
                 }
             }
         }

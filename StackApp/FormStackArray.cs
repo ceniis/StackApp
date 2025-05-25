@@ -49,9 +49,6 @@ namespace StackApp
 
             dataGridView1.Columns.Add(dataColumn);
 
-            // Bind your data source
-            // dataGridView1.DataSource = myStack.Nodes;
-
             // Update the label
             labelElements.Text = $"There're {StackArray.NumberOfElements()} element(s).";
         }
@@ -108,29 +105,15 @@ namespace StackApp
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string[] lines = File.ReadAllLines(openFileDialog.FileName);
-                    List<int> numbers = new List<int>();
+                    var numbers = FileManager.ReadIntegersFromFile(openFileDialog.FileName, line =>
+                        MessageBox.Show($"Invalid number skipped: {line}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning));
 
-                    foreach (string line in lines)
-                    {
-                        if (int.TryParse(line.Trim(), out int number))
-                        {
-                            numbers.Add(number);
-                        }
-                        else
-                        {
-                            MessageBox.Show($"Invalid number skipped: {line}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
+                    StackArray.ClearsStack();
 
-                    StackArray.ClearsStack(); // Clear the stack before loading new data
-
-                    foreach (int num in numbers)
-                    {
+                    foreach (var num in numbers)
                         StackArray.InsertTopElement(num);
-                    }
 
-                    UpdateGrid(); // Refresh DataGridView with the stack contents
+                    UpdateGrid();
                     labelElements.Text = $"There're {StackArray.NumberOfElements()} element(s).";
                 }
             }
@@ -139,6 +122,7 @@ namespace StackApp
                 MessageBox.Show("Error reading file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
@@ -148,7 +132,7 @@ namespace StackApp
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    node.SaveToFile(saveFileDialog.FileName, dataGridView1);
+                    FileManager.SaveToFile(saveFileDialog.FileName, dataGridView1);
                 }
             }
         }
