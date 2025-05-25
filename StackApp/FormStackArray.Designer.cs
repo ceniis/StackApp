@@ -284,7 +284,7 @@
             MinimizeBox = false;
             Name = "FormStackArray";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Stack Node";
+            Text = "Stack Array";
             Load += FormStackArray_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox1.ResumeLayout(false);

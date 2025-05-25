@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace StackApp
 {
-    class StackArray
+    public class StackArray
     {
         public static int StackSize = 100;
         private static int Top = -1;
@@ -78,7 +78,7 @@ namespace StackApp
         public static bool FillmentCheck()
         {
             bool filment;
-            if (MyStack.Length == 0) return filment = true; // emptu
+            if (MyStack.Length == 0) return filment = true; // empty
             else return filment = false; // not empty
         }
 
