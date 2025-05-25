@@ -117,7 +117,7 @@
             btnPeek.TabIndex = 2;
             btnPeek.Text = "Peek";
             btnPeek.UseVisualStyleBackColor = false;
-
+            btnPeek.Click += btnPeek_Click;
             // 
             // btnPush
             // 
@@ -187,7 +187,7 @@
             btnRead.TabIndex = 5;
             btnRead.Text = "Read from file";
             btnRead.UseVisualStyleBackColor = false;
-            btnRead.Click += btnFile_Click;
+            btnRead.Click += btnRead_Click;
             // 
             // numericUpDown1
             // 

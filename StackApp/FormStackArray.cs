@@ -17,7 +17,7 @@ namespace StackApp
         {
             InitializeComponent();
         }
-        
+
         FormStackNode node = new FormStackNode();
 
         private void FormStackArray_Load(object sender, EventArgs e)
@@ -53,21 +53,36 @@ namespace StackApp
             // dataGridView1.DataSource = myStack.Nodes;
 
             // Update the label
-            labelElements.Text = StackArray.NumberOfElements();
-            StackArray.StackSize = (int)numericUpDown2.Value; 
+            labelElements.Text = $"There're {StackArray.NumberOfElements()} element(s).";
         }
 
         private void btnPush_Click(object sender, EventArgs e)
         {
-            int element = checkBox1.Checked ? new Random().Next(0, 10) : (int)numericUpDown1.Value; 
-            StackArray.InsertTopElement(element);
-            labelElements.Text = StackArray.NumberOfElements();
+            try
+            {
+                int element = checkBox1.Checked ? new Random().Next(0, 10) : (int)numericUpDown1.Value;
+                StackArray.InsertTopElement(element);
+                labelElements.Text = $"There're {StackArray.NumberOfElements()} element(s).";
+                UpdateGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnPop_Click(object sender, EventArgs e)
         {
-            StackArray.DeleteTopElement();
-            labelElements.Text = StackArray.NumberOfElements();
+            try
+            {
+                StackArray.DeleteTopElement();
+                labelElements.Text = $"There're {StackArray.NumberOfElements()} element(s).";
+                UpdateGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnPeek_Click(object sender, EventArgs e)
@@ -79,7 +94,8 @@ namespace StackApp
         {
             StackArray.ClearsStack();
             MessageBox.Show("Stack is empty", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            labelElements.Text = StackArray.NumberOfElements();
+            labelElements.Text = $"There're {StackArray.NumberOfElements()} element(s).";
+            UpdateGrid();
         }
 
         private void btnRead_Click(object sender, EventArgs e)
@@ -107,15 +123,15 @@ namespace StackApp
                         }
                     }
 
-                    // Display in DataGridView
-                    dataGridView1.Rows.Clear();
-                    dataGridView1.Columns.Clear();
-                    dataGridView1.Columns.Add("Elements", "Elements");
+                    StackArray.ClearsStack(); // Clear the stack before loading new data
 
                     foreach (int num in numbers)
                     {
-                        dataGridView1.Rows.Add(num);
+                        StackArray.InsertTopElement(num);
                     }
+
+                    UpdateGrid(); // Refresh DataGridView with the stack contents
+                    labelElements.Text = $"There're {StackArray.NumberOfElements()} element(s).";
                 }
             }
             catch (Exception ex)
@@ -123,6 +139,7 @@ namespace StackApp
                 MessageBox.Show("Error reading file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -138,7 +155,12 @@ namespace StackApp
         private void btnNodeStack_Click(object sender, EventArgs e)
         {
             this.Hide();
-            node.Show();
+        }
+
+        private void UpdateGrid()
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = StackArray.GetStackItems();
         }
     }
 }

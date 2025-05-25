@@ -10,7 +10,7 @@ namespace StackApp
 {
     class StackArray
     {
-        public static int StackSize { set; get; }
+        public static int StackSize = 100;
         private static int Top = -1;
         private static int[]? MyStack;
 
@@ -85,9 +85,26 @@ namespace StackApp
         /// <summary>
         /// Method that displays number of elements in the stack
         /// </summary>
-        public static string NumberOfElements()
+        public static int NumberOfElements()
         {
-            return MyStack.Length == 0 ? "0 elements in the stack" : $"There're { Top + 1} element(s).";
+            return Top + 1;
         }
+
+        public static List<StackItem> GetStackItems()
+        {
+            List<StackItem> items = new List<StackItem>();
+            for (int i = Top; i >= 0; i--)
+            {
+                items.Add(new StackItem { Data = MyStack[i] });
+            }
+            return items;
+        }
+
+        // Helper class to bind data
+        public class StackItem
+        {
+            public int Data { get; set; }
+        }
+
     }
 }

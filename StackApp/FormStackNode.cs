@@ -100,7 +100,7 @@ namespace StackApp
         {
             myStack.FreeStack();
             MessageBox.Show("Stack is empty", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            labelElements.Text = labelElements.Text = $"There're {myStack.Count} element(s).";
+            labelElements.Text = $"There're {myStack.Count} element(s).";
         }
 
         public void LoadFromFile(string fileName)
@@ -124,22 +124,30 @@ namespace StackApp
             }
         }
 
-        public void btnFile_Click(object sender, EventArgs e)
+        private void btnRead_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            try
             {
-                openFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-                openFileDialog.Title = "Select a file to load";
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
-                    myStack.FreeStack();
-                    LoadFromFile(openFileDialog.FileName);
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = myStack.Nodes;
-                    labelElements.Text = labelElements.Text = $"There're {myStack.Count} element(s).";
-                    dataGridView1.Refresh();
+                    openFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+                    openFileDialog.Title = "Select a file to load";
+
+
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        myStack.FreeStack();
+                        LoadFromFile(openFileDialog.FileName);
+                        dataGridView1.DataSource = null;
+                        dataGridView1.DataSource = myStack.Nodes;
+                        labelElements.Text = $"There're {myStack.Count} element(s).";
+                        dataGridView1.Refresh();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading file: " + ex.Message);
             }
         }
 
@@ -147,6 +155,11 @@ namespace StackApp
         {
             FormStackArray array = new FormStackArray();
             array.Show();
+        }
+
+        private void btnPeek_Click(object sender, EventArgs e)
+        {
+            HighlightTopRow(dataGridView1);
         }
     }
 }
