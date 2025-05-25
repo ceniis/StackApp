@@ -161,5 +161,43 @@ namespace StackApp
         {
             HighlightTopRow(dataGridView1);
         }
+
+        public void SaveToFile(string fileName, DataGridView dataGridView)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(fileName))
+                {
+                    foreach (DataGridViewRow row in dataGridView.Rows)
+                    {
+                        if (row.IsNewRow) continue; // Skip the blank row at the end
+                        if (row.Cells["colElement"].Value is int value)
+                        {
+                            writer.WriteLine(value);
+                        }
+                    }
+                }
+
+                MessageBox.Show("Stack saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving to file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+                saveFileDialog.Title = "Save Stack to File";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    SaveToFile(saveFileDialog.FileName, dataGridView1);
+                }
+            }
+        }
     }
 }

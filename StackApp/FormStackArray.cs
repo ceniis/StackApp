@@ -139,12 +139,18 @@ namespace StackApp
                 MessageBox.Show("Error reading file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
         private void btnSave_Click(object sender, EventArgs e)
         {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+                saveFileDialog.Title = "Save Stack to File";
 
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    node.SaveToFile(saveFileDialog.FileName, dataGridView1);
+                }
+            }
         }
 
         private void btnHelp_Click(object sender, EventArgs e)

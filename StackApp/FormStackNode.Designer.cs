@@ -240,6 +240,7 @@
             btnSave.TabIndex = 9;
             btnSave.Text = "Save in file";
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // btnArrayStack
             // 
